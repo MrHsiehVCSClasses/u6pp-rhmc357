@@ -1,0 +1,41 @@
+/** 
+ * Uno cards
+ *
+ * Colors: red, blue, green, yellow
+ * Values: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+ * Special Values: Reverse, Skip, Draw 2
+ * Wilds: Wild, Wild Draw 4
+ *
+ * There are two of each value (and special value), in each color.
+ * exception: there is only 1 of each 0.
+ * There are 4 of each wild. Wilds do not have colors. 
+ *
+ */
+
+// the following method creates and returns a deck with the correct number of each card
+public static CardStack createUnoDeck() {
+    CardStack stack = new CardStack();
+    for (String color : Card.COLORS) {
+        if (color.equalsIgnoreCase(Card.WILD)) {
+            continue;
+        }
+
+        for (String value : Card.VALUES) {
+            if (value.equals(Card.WILD) || value.equals(Card.WILD_DRAW_4)) {
+                continue;
+            }
+            stack.push(new Card(color, value));
+            if (!value.equalsIgnoreCase(Card.ZERO)) {
+                stack.push(new Card(color, value));
+            }
+        }
+    }
+
+    for (int i = 0; i < 4; i++) {
+        stack.push(new Card(Card.WILD, Card.WILD));
+        stack.push(new Card(Card.WILD, Card.WILD_DRAW_4));
+    }
+
+    return stack;
+}
+
