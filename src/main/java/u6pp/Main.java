@@ -8,5 +8,12 @@ public class Main {
         //game.play();
 
         // use this space to test your code :)
+        Card myCard = new Card(Card.WILD, Card.EIGHT);
+        myCard.trySetColor("bfdjhrhds");
+        myCard.trySetColor(Card.WILD);
+        myCard.trySetColor(null);
+        myCard.trySetColor(Card.BLUE);
+        myCard.trySetColor(Card.RED);
+
     }
 }

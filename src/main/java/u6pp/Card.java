@@ -28,7 +28,58 @@ public class Card {
     public static String[] COLORS = {RED, GREEN, BLUE, YELLOW, WILD}; 
     public static String[] VALUES = {ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, 
         DRAW_2, REVERSE, SKIP, WILD, WILD_DRAW_4};
-
+        String col;
+        String val;
     // start you code here
-
+    Card(String color, String value){
+        col = color;
+        val = value;
+    }
+    String getColor(){
+        return col;
+    }
+    String getValue(){
+        return val;
+    }
+    boolean trySetColor(String color){
+        boolean check = false;
+        for (String c : COLORS){
+            if ((c .equals(color))){
+                check = true;
+            }
+        }
+        if (check == false){
+            System.out.println("not an actual color");
+            return false;
+        }
+        if (color .equals(WILD) || color == null){
+            System.out.println("either color is a wild or null");
+            return false;
+        }
+        if (col .equals(WILD)){
+            col = color;
+            System.out.println("this is true the color has been changed");
+            return true;
+        }
+        else{
+            System.out.println("everything is false final statement");
+            return false;
+        }
+    }
+    
+    Boolean canPlayOn(Card input){
+        if (input == null){
+            return false;
+        }
+        if (col .equals(WILD)){
+            return true;
+        }
+        if (input.getColor() .equals(col)  || input.getValue() .equals(val) ){
+            return true;
+        }
+        // if (trySetColor(input.getColor()) == false){
+        //     return false;
+        // }
+        return false;
+    }
 }
